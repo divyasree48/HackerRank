@@ -1,0 +1,29 @@
+def solve(c):
+    # Write your code here
+    mod=1000000007 
+    d={}
+    for i in c:
+        if i in d.keys():
+            d[i]+=1
+        else:
+            d[i]=1
+    l=sorted(c)
+    c1=0
+    ans=1
+    tc=0
+    n=len(c)
+    for i in l:
+        #print(c1,c,i)
+        if i>tc:
+            #print(1)
+            return 0
+        if tc in d.keys():
+            c1+=d[tc]
+            d[tc]-=d[tc]
+        c1+=d[i]
+        d[i]-=d[i]
+        ans*=c1
+        ans=ans%mod
+        c1-=1
+        tc+=1
+    return ans%mod
