@@ -1,0 +1,29 @@
+def solve(a):
+    # Write your code here
+    mod=1000000007
+    def be(a,b,mod):
+        if b<=0:
+            return 1
+        res=1
+        while(b):
+            if b&1:
+                b-=1
+                res=res*a
+                res=res%mod
+            else:
+                b>>=1
+                a=a*a
+                a=a%mod
+        return res
+    e=0
+    o=0
+    for i in a:
+        if i&1:
+            o+=1
+        else:
+            e+=1
+    x=be(2,e,mod)%mod
+    x-=1
+    y=be(2,o-1,mod)%mod
+    y-=1
+    return (x%mod+y%mod+(x*y)%mod)%mod
